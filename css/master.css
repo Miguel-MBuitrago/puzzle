@@ -1,34 +1,47 @@
-body{
-    background: black;
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 
+body{
+    background-color: #8693ab;
+
+    color: #E1CC7A;
+    text-align: center;
+    font-family: 'Dela Gothic One', cursive;
 }
 
 #game{
     width: fit-content;
     height: fit-content;
-    margin: auto;
-    background: #342C0E;
+    margin: 20px auto;
+    /* background: #bdd4e7; */
+    background: #E1CC7A;
 
     display: grid;
     grid-gap: .5em;
-    padding: .3em;
+    padding: .4em;
+    border-radius: 5px;
+
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 6px 12px, 
+                rgba(0, 0, 0, 0.23) 0px 6px 12px;
+
 }
 
 #game div{
     width: 100%;
     height: 100%;
-    background: #E1CC7A;
+    background: #dbebfa;
+    color: #35748d;
 
     display: flex;
     justify-content: center;
     align-items: center;
     
     border-radius: 2px;
+    cursor: pointer;
+
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, 
+               rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 div [value='0']{
     visibility: hidden;
 }
-
-
-/* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */

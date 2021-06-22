@@ -1,13 +1,64 @@
-const SOLUTION = [[1, 2, 3, 4], [5, 6, 7, 8], [6, 10, 11, 12], [13, 14, 15, 0]]
-
-let puzzle,gameDiv
-
-puzzle = [[1, 2, 3, 4], [5, 6, 7, 8], [6, 10, 11, 12], [13, 14, 15, 0]]
+let puzzle = [],
+    gameDiv,
+    sol = []
 
 function isSoved(){
-    if(JSON.stringify(puzzle) === JSON.stringify(SOLUTION)){
-        setTimeout(()=>alert('resueto'),100)
+    if(JSON.stringify(puzzle) === JSON.stringify(sol)){
+        setTimeout(()=>alert('Enhorabuena!!'),0)
     }
+}
+
+function generatePuzzle(size) {
+    let n = 1
+    let numbers = []
+    sol = []
+    for (let x = 0; x < size; x++) {
+        let row = []
+        for (let y = 0; y < size; y++) {
+            if(x === size - 1 && y === size - 1){
+                n=0
+            }else{
+                numbers.push(n)
+            }
+            row.push(n)
+            
+            n++
+        }
+        sol.push(row)
+    }
+
+    puzzle = formatArr(shuffle(numbers),size)
+
+    setGame(size)
+}
+
+function shuffle(numbers) {
+    for (let i = numbers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+    }
+    
+    return numbers
+}
+
+function formatArr(arr,size){
+    let row = []
+
+    return arr.reduce((fArr, n, idx) => {
+        if(idx !== 0 && (idx) % size === 0){
+            fArr.push(row)
+            row = []
+            row.push(n)
+        }else{
+            row.push(n)
+            if (idx === (size * size) - 2) {
+                row.push(0)
+                fArr.push(row)
+            }       
+        }
+        return fArr
+    }, [])
+
 }
 
 function setGame(size){
@@ -15,12 +66,12 @@ function setGame(size){
     gameDiv.style.gridTemplateColumns  = `repeat(${size},50px)`
     gameDiv.style.gridTemplateRows     = `repeat(${size},50px)`
     gameDiv.id = 'game'
-    setDivs(puzzle)
+    setDivs()
 
     document.getElementsByTagName('main')[0].appendChild(gameDiv)
 }
 
-function setDivs(puzzle){
+function setDivs(){
     puzzle.forEach((column,idxC) => {
         column.forEach((num,idxR) => {
             gameDiv.appendChild(createDiv(idxC,idxR,num))
@@ -106,4 +157,21 @@ function move(coordsZero,coordsClick){
     puzzle[coordsClick[0]][coordsClick[1]] = 0
 
     isSoved()
+}
+
+document.addEventListener('DOMContentLoaded', () =>{ 
+    generatePuzzle(3)
+
+    document.getElementById('form')
+            .lastElementChild
+            .addEventListener('click',gestorFormulario)
+})
+
+function gestorFormulario(e){
+    e.preventDefault()
+    let size = document.getElementById('form')
+                       .firstElementChild.value
+    
+    gameDiv.remove()
+    generatePuzzle(size)
 }
