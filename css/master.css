@@ -1,0 +1,34 @@
+body{
+    background: black;
+
+}
+
+#game{
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    background: #342C0E;
+
+    display: grid;
+    grid-gap: .5em;
+    padding: .3em;
+}
+
+#game div{
+    width: 100%;
+    height: 100%;
+    background: #E1CC7A;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 2px;
+}
+
+div [value='0']{
+    visibility: hidden;
+}
+
+
+/* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
