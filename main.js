@@ -63,8 +63,8 @@ function formatArr(arr,size){
 
 function setGame(size){
     gameDiv = document.createElement('div')
-    gameDiv.style.gridTemplateColumns  = `repeat(${size},50px)`
-    gameDiv.style.gridTemplateRows     = `repeat(${size},50px)`
+    gameDiv.style.gridTemplateColumns  = `repeat(${size},100px)`
+    gameDiv.style.gridTemplateRows     = `repeat(${size},100px)`
     gameDiv.id = 'game'
     setDivs()
 
